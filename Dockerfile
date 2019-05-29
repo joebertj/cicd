@@ -8,7 +8,7 @@ FROM ubuntu:bionic
 
 RUN apt update
 
-RUN apt install -y wget unzip jq python
+RUN apt install -y wget unzip jq python docker
 
 RUN wget https://s3.amazonaws.com/aws-cli/awscli-bundle.zip
 
