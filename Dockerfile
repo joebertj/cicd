@@ -4,9 +4,7 @@ FROM golang:alpine AS ecr
 RUN  apk --no-cache add git \
   && go get -u github.com/awslabs/amazon-ecr-credential-helper/ecr-login/cli/docker-credential-ecr-login
 #############################################################################################################################################
-FROM docker:dind
-
-RUN apk update
+FROM docker:latest
 
 RUN apk --no-cache add wget unzip jq python bash
 
