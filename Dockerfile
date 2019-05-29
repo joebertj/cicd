@@ -28,8 +28,4 @@ RUN apk clean
 
 COPY --from=ecr /go/bin/docker-credential-ecr-login /usr/local/bin/ecr-login
 
-RUN systemctl enable docker
-
-RUN systemctl start docker
-
 RUN nohup bash -c "/usr/local/bin/ecr-login &"
