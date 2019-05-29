@@ -28,8 +28,4 @@ ADD https://amazon-eks.s3-us-west-2.amazonaws.com/1.12.7/2019-03-27/bin/linux/am
 
 RUN chmod +x /usr/local/bin/kubectl
 
-COPY --from=ecr /go/bin/docker-credential-ecr-login /usr/local/bin/ecr-login
-
-RUN nohup bash -c "/usr/local/bin/ecr-login &"
-
-VOLUME /var/run/docker.sock:/var/run/docker.sock
+COPY --from=ecr /go/bin/docker-credential-ecr-login /usr/local/bin/docker-credential-ecr-login
