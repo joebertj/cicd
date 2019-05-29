@@ -4,11 +4,11 @@ FROM golang:alpine AS ecr
 RUN  apk --no-cache add git \
   && go get -u github.com/awslabs/amazon-ecr-credential-helper/ecr-login/cli/docker-credential-ecr-login
 #############################################################################################################################################
-FROM ubuntu:bionic
+FROM docker
 
-RUN apt update
+RUN apk update
 
-RUN apt install -y wget unzip jq python docker docker.io
+RUN apk --no-cache add wget unzip jq python
 
 RUN wget https://s3.amazonaws.com/aws-cli/awscli-bundle.zip
 
@@ -24,7 +24,7 @@ ADD https://amazon-eks.s3-us-west-2.amazonaws.com/1.12.7/2019-03-27/bin/linux/am
 
 RUN chmod +x /usr/local/bin/kubectl
 
-RUN apt clean
+RUN apk clean
 
 COPY --from=ecr /go/bin/docker-credential-ecr-login /usr/local/bin/ecr-login
 
